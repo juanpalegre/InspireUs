@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "334786410701",
+    "project_id": "inspireus-8fa1a",
+    "storage_bucket": "inspireus-8fa1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334786410701:android:4a95f81d5b435b85241184",
+        "android_client_info": {
+          "package_name": "com.example.inspireus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334786410701-u34i4o4vorpsje9to49cufiinnvj1qqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8CSFM3YoUUtbTqItyVnAyGCoor36lh-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334786410701-u34i4o4vorpsje9to49cufiinnvj1qqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
