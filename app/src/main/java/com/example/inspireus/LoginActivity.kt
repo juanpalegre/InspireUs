@@ -2,15 +2,15 @@ package com.example.inspireus
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.inspireus.databinding.ActivityMainBinding
+import com.example.inspireus.databinding.ActivityLoginBinding
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 }
