@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.inspireus.MainFragment"
+        android:name="com.example.inspireus.ui.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/createFragment"
-        android:name="com.example.inspireus.CreateFragment"
+        android:name="com.example.inspireus.ui.fragments.CreateFragment"
         android:label="fragment_create"
         tools:layout="@layout/fragment_create" />
     <fragment
         android:id="@+id/favListFragment"
-        android:name="com.example.inspireus.FavListFragment"
+        android:name="com.example.inspireus.ui.fragments.FavListFragment"
         android:label="fragment_fav_list"
         tools:layout="@layout/fragment_fav_list" />
 </navigation>

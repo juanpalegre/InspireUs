@@ -1,8 +1,9 @@
-package com.example.inspireus
+package com.example.inspireus.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.fragment.NavHostFragment
+import com.example.inspireus.R
 import com.example.inspireus.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
