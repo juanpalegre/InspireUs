@@ -12,8 +12,8 @@ import com.example.inspireus.R
 import com.example.inspireus.data.remote.AuthDataSource
 import com.example.inspireus.databinding.FragmentLoginBinding
 import com.example.inspireus.domain.AuthRepositoryImplement
-import com.example.inspireus.presentation.LoginViewModel
-import com.example.inspireus.presentation.LoginViewModelFactory
+import com.example.inspireus.presentation.AuthViewModel
+import com.example.inspireus.presentation.AuthViewModelFactory
 import com.example.inspireus.ui.MainActivity
 import com.example.inspireus.utils.Resource
 import com.google.firebase.auth.FirebaseAuth
@@ -23,7 +23,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private lateinit var binding: FragmentLoginBinding
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
-    private val viewModel by viewModels<LoginViewModel> { LoginViewModelFactory(AuthRepositoryImplement(
+    private val viewModel by viewModels<AuthViewModel> { AuthViewModelFactory(AuthRepositoryImplement(
         AuthDataSource()
     )) }
 

@@ -7,7 +7,5 @@ class AuthRepositoryImplement(private val dataSource: AuthDataSource): AuthRepos
 
     override suspend fun signIn(email: String, password: String): FirebaseUser? = dataSource.signIn(email, password)
 
-    override suspend fun signUp(username: String, email: String, password: String): FirebaseUser? {
-        TODO("Not yet implemented")
-    }
+    override suspend fun signUp(username: String, email: String, password: String): FirebaseUser? = dataSource.signUp(username, email, password)
 }
