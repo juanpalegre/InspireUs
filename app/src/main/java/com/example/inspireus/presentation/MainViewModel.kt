@@ -22,8 +22,6 @@ class MainViewModel(private val repo: QuotesRepository): ViewModel() {
         }
     }
 
-
-
 }
 
 class MainViewModelFactory(private val repo: QuotesRepository): ViewModelProvider.Factory {

@@ -8,4 +8,6 @@ interface QuotesRepository {
     suspend fun getQuotes(): List<Quote>
 
     suspend fun getMainQuote(): Quote
+
+    suspend fun createQuote(quote: String)
 }

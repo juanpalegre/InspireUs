@@ -9,4 +9,10 @@ class QuotesRepositoryImplement(private val dataSource: QuoteDataSource): Quotes
     override suspend fun getQuotes(): List<Quote> = dataSource.getQuotes()
 
     override suspend fun getMainQuote(): Quote = dataSource.getMainQuote()
+
+    override suspend fun createQuote(quote: String){
+        dataSource.createQuote(quote)
+    }
+
+
 }

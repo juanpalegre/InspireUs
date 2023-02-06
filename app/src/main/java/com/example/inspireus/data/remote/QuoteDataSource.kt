@@ -1,5 +1,6 @@
 package com.example.inspireus.data.remote
 
+import android.widget.Toast
 import com.example.inspireus.data.model.Quote
 import com.example.inspireus.utils.Resource
 import com.google.firebase.firestore.FirebaseFirestore
@@ -28,6 +29,13 @@ class QuoteDataSource {
         }
         val randomNumber = (mainList.indices).random()
         return mainList[randomNumber]
+    }
+
+    suspend fun createQuote(quote: String){
+        val quoteHashMap = hashMapOf(
+            "quote" to quote
+        )
+        FirebaseFirestore.getInstance().collection("quotes").add(quoteHashMap)
     }
 
 }
