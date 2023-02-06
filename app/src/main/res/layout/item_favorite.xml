@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/item_fav_card"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_margin="32dp"
+        app:cardCornerRadius="16dp"
+        app:cardBackgroundColor="@color/teal_700"
+        android:elevation="16dp">
+
+        <TextView
+            android:id="@+id/item_fav_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="This are my favourites quotes"
+            android:padding="16dp"/>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
