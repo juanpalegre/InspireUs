@@ -7,6 +7,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.example.inspireus.R
+import com.example.inspireus.data.local.AppDatabase
+import com.example.inspireus.data.local.LocalDataSource
 import com.example.inspireus.data.remote.QuoteDataSource
 import com.example.inspireus.databinding.FragmentCreateBinding
 import com.example.inspireus.domain.QuotesRepositoryImplement
@@ -19,7 +21,7 @@ class CreateFragment : Fragment(R.layout.fragment_create) {
 
     private lateinit var binding: FragmentCreateBinding
     private val viewModel by viewModels<CreateViewModel> { CreateViewModelFactory(QuotesRepositoryImplement(
-        QuoteDataSource()
+        QuoteDataSource(), LocalDataSource(AppDatabase.getDatabase(requireContext()).quoteDao())
     )) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

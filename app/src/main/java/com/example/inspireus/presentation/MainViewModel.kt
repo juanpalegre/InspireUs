@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import com.example.inspireus.data.model.Quote
+import com.example.inspireus.data.model.QuoteEntity
 import com.example.inspireus.domain.QuotesRepository
 import com.example.inspireus.utils.Resource
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +22,15 @@ class MainViewModel(private val repo: QuotesRepository): ViewModel() {
             emit(Resource.Failure(e))
         }
     }
+
+    /*fun saveQuote() = liveData(Dispatchers.IO) {
+        emit(Resource.Loading())
+        try {
+            emit(Resource.Success(repo.saveQuote(quoteModel)))
+        }catch (e:Exception){
+            emit(Resource.Failure(e))
+        }
+    }*/
 
 }
 
