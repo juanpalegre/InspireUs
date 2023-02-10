@@ -15,9 +15,9 @@ data class QuoteList (
 @Entity(tableName = "quotes_table")
 data class QuoteEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo("id")
+    @ColumnInfo(name = "id")
     val id: Int = 0,
-    @ColumnInfo("quote")
+    @ColumnInfo(name = "quote")
     val quote: String = ""
 )
 
