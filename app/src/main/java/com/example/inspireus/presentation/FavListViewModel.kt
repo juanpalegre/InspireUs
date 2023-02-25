@@ -1,18 +1,16 @@
 package com.example.inspireus.presentation
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import com.example.inspireus.domain.QuotesRepository
 import com.example.inspireus.utils.Resource
 import kotlinx.coroutines.Dispatchers
 
 class FavListViewModel(private val repo: QuotesRepository): ViewModel() {
 
-    fun getSavedQuotes() = liveData(Dispatchers.IO) {
+    fun getSavedQuotes() = liveData(viewModelScope.coroutineContext + Dispatchers.IO) {
         emit(Resource.Loading())
         try {
-            emit(Resource.Success(repo.getSavedQuote()))
+            emit(Resource.Success(repo.getFavQuotesList()))
         }catch (e: Exception){
             emit(Resource.Failure(e))
         }

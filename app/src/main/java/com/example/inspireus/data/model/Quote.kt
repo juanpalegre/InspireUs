@@ -5,7 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 data class Quote(
-    val quote: String = ""
+    //var id: String = "",
+    var quote: String = ""
 )
 
 data class QuoteList (
@@ -15,19 +16,16 @@ data class QuoteList (
 @Entity(tableName = "quotes_table")
 data class QuoteEntity(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    val id: Int = 0,
-    @ColumnInfo(name = "quote")
-    val quote: String = ""
+    @ColumnInfo(name = "id") val id: Int = 0,
+    @ColumnInfo(name = "quote") val quote: String
 )
 
 fun QuoteEntity.toQuote(): Quote = Quote(
-    this.quote
+    quote = this.quote
 )
 
 fun Quote.toQuoteEntity(): QuoteEntity = QuoteEntity(
-    this.hashCode(), //revisar
-    this.quote
+    quote = this.quote
 )
 
 fun List<QuoteEntity>.toQuoteList(): QuoteList {
@@ -36,4 +34,8 @@ fun List<QuoteEntity>.toQuoteList(): QuoteList {
         resultList.add(it.toQuote())
     }
     return QuoteList(resultList)
+}
+
+fun List<QuoteEntity>.toListOfQuote(): List<Quote> = this.map {
+    Quote(it.quote)
 }

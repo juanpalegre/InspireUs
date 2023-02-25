@@ -1,18 +1,18 @@
 package com.example.inspireus.presentation
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.liveData
+import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.*
 import com.example.inspireus.data.model.Quote
 import com.example.inspireus.data.model.QuoteEntity
 import com.example.inspireus.domain.QuotesRepository
 import com.example.inspireus.utils.Resource
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainViewModel(private val repo: QuotesRepository): ViewModel() {
 
-    val quoteModel = MutableLiveData<Quote>()
+    val quote = MutableLiveData<Quote>()
 
     fun getMainQuote() = liveData(Dispatchers.IO){
         emit(Resource.Loading())
@@ -23,14 +23,12 @@ class MainViewModel(private val repo: QuotesRepository): ViewModel() {
         }
     }
 
-    /*fun saveQuote() = liveData(Dispatchers.IO) {
-        emit(Resource.Loading())
-        try {
-            emit(Resource.Success(repo.saveQuote(quoteModel)))
-        }catch (e:Exception){
-            emit(Resource.Failure(e))
+    fun saveQuote(quote: Quote){
+        viewModelScope.launch {
+            repo.saveQuote(quote)
+            Log.d("database", "Frase guardada en la base de datos")
         }
-    }*/
+    }
 
 }
 

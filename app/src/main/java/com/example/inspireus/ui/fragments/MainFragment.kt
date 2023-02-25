@@ -1,6 +1,7 @@
 package com.example.inspireus.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
@@ -9,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.example.inspireus.R
 import com.example.inspireus.data.local.AppDatabase
 import com.example.inspireus.data.local.LocalDataSource
+import com.example.inspireus.data.model.Quote
 import com.example.inspireus.data.remote.QuoteDataSource
 import com.example.inspireus.databinding.FragmentMainBinding
 import com.example.inspireus.domain.QuotesRepositoryImplement
@@ -20,6 +22,7 @@ import com.example.inspireus.utils.Resource
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private lateinit var binding: FragmentMainBinding
+    private lateinit var quote: Quote
     private val viewModel by viewModels<MainViewModel> { MainViewModelFactory(QuotesRepositoryImplement(
         QuoteDataSource(), LocalDataSource(AppDatabase.getDatabase(requireContext()).quoteDao())
     )) }
@@ -30,6 +33,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         setMainText()
         binding.textQuote.setOnClickListener {
             setMainText()
+        }
+        //quote.quote = binding.textQuote.text.toString()
+        binding.floatingFavoriteButton.setOnClickListener {
+            quote.quote = binding.textQuote.text.toString()
+            viewModel.saveQuote(quote)
         }
     }
 
@@ -43,7 +51,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 is Resource.Success -> {
                     binding.progressBar.visibility = View.GONE
                     binding.textQuote.visibility = View.VISIBLE
-                    binding.textQuote.text = result.data.quote.toString()
+                    binding.textQuote.text = result.data.quote
                 }
                 is Resource.Failure -> {
                     binding.progressBar.visibility = View.GONE

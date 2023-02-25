@@ -1,14 +1,18 @@
 package com.example.inspireus.data.local
 
-import com.example.inspireus.data.model.Quote
-import com.example.inspireus.data.model.QuoteList
-import com.example.inspireus.data.model.toQuoteEntity
-import com.example.inspireus.data.model.toQuoteList
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.map
+import com.example.inspireus.data.model.*
 
 class LocalDataSource(private val quoteDao: QuoteDao) {
 
-    suspend fun getSavedQuotes(): QuoteList {
-        return quoteDao.getFavouritesQuotes().toQuoteList()
+    suspend fun getSavedQuotes(): LiveData<List<Quote>> {
+        return quoteDao.getFavouritesQuotes().map { it.toListOfQuote() }
+    }
+
+    suspend fun getFavListQuotes(): List<Quote>{
+        val response: List<QuoteEntity> = quoteDao.getFavQuotesList()
+        return response.map { it.toQuote() }
     }
 
     suspend fun saveQuote(quote: Quote){
