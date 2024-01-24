@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.example.inspireus.R
 import com.example.inspireus.data.local.AppDatabase
 import com.example.inspireus.data.local.LocalDataSource
@@ -17,12 +18,14 @@ import com.example.inspireus.domain.QuotesRepositoryImplement
 import com.example.inspireus.presentation.MainViewModel
 import com.example.inspireus.presentation.MainViewModelFactory
 import com.example.inspireus.utils.Resource
+import kotlinx.coroutines.launch
 
 
 class MainFragment : Fragment(R.layout.fragment_main) {
 
     private lateinit var binding: FragmentMainBinding
     private lateinit var quote: Quote
+
     private val viewModel by viewModels<MainViewModel> { MainViewModelFactory(QuotesRepositoryImplement(
         QuoteDataSource(), LocalDataSource(AppDatabase.getDatabase(requireContext()).quoteDao())
     )) }
@@ -34,11 +37,23 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         binding.textQuote.setOnClickListener {
             setMainText()
         }
-        //quote.quote = binding.textQuote.text.toString()
+        viewModel.quote.observe(viewLifecycleOwner, Observer {
+            quote = it
+        })
+
         binding.floatingFavoriteButton.setOnClickListener {
-            quote.quote = binding.textQuote.text.toString()
-            viewModel.saveQuote(quote)
+            val currentQuote = currentQuote()
+            if (currentQuote != null) {
+                viewLifecycleOwner.lifecycleScope.launch {
+                    viewModel.saveQuote(currentQuote)
+                    Log.d("database", "Frase guardada en la base de datos")
+                }
+            } else {
+                Log.e("database", "Error al obtener el Quote desde la pantalla.")
+            }
         }
+
+
     }
 
     private fun setMainText() {
@@ -59,6 +74,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
             }
         })
+    }
+
+    private fun currentQuote(): Quote? {
+        val currentQuoteText = binding.textQuote.text.toString().trim()
+        return if (currentQuoteText.isNotEmpty()) {
+            Quote(currentQuoteText)
+        } else {
+            null
+        }
     }
 
 }

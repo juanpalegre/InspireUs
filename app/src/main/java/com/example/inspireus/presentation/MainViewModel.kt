@@ -17,7 +17,9 @@ class MainViewModel(private val repo: QuotesRepository): ViewModel() {
     fun getMainQuote() = liveData(Dispatchers.IO){
         emit(Resource.Loading())
         try {
-            emit(Resource.Success(repo.getMainQuote()))
+            val mainQuote = repo.getMainQuote()
+            emit(Resource.Success(mainQuote))
+            Log.d("database", "Main quote: $mainQuote")
         }catch (e: Exception){
             emit(Resource.Failure(e))
         }
